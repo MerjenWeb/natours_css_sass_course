@@ -7,18 +7,29 @@ Dark green: #28b485
 
 */
 
-* {
+*,
+*::after,
+*::before {
 	margin: 0;
 	padding: 0;
-	box-sizing: border-box;
+	box-sizing: inherit;
+}
+
+html {
+	/* This shouldn't be in pixels as we overwrite the browser settings that the user can manually change in the settings. For example, when people have bad eyesight, they increase the default font-size of their browser. If we set the font to 10px, then we remove the ability for these people to see our website properly, because they won't be able to change the default font-size. They can CHANGE it, but our font-size WON'T be affected by that. It will always be 10px, no matter what the user has as the default size. */
+	/*  */
+	/* font-size: 100%; - 16px */
+	/* 10/16 = .625 */
+	font-size: 62.5%;
 }
 
 body {
-	padding: 30px;
+	box-sizing: border-box;
+	padding: 3rem;
 	color: #777;
 	font-family: "Lato", sans-serif;
 	font-weight: 400;
-	font-size: 16px;
+	/* font-size: 16px; */
 	line-height: 1.7;
 }
 
@@ -45,17 +56,17 @@ body {
 	clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
 }
 
-.logo-box {
+.header__logo-box {
 	position: absolute;
-	top: 40px;
-	left: 40px;
+	top: 4rem;
+	left: 4rem;
 }
 
-.logo {
-	height: 35px;
+.header__logo {
+	height: 3.5rem;
 }
 
-.text-box {
+.header__text-box {
 	position: absolute;
 	top: 40%;
 	left: 50%;
@@ -64,7 +75,7 @@ body {
 }
 
 .heading-primary {
-	margin-bottom: 60px;
+	margin-bottom: 6rem;
 	color: #fff;
 	text-transform: uppercase;
 
@@ -72,11 +83,11 @@ body {
 	backface-visibility: hidden;
 }
 
-.heading-primary-main {
+.heading-primary--main {
 	display: block;
-	font-size: 60px;
+	font-size: 6rem;
 	font-weight: 400;
-	letter-spacing: 35px;
+	letter-spacing: 3.5rem;
 
 	/* Animation properties */
 	animation-name: moveInLeft;
@@ -88,11 +99,11 @@ body {
   */
 }
 
-.heading-primary-sub {
+.heading-primary--sub {
 	display: block;
-	font-size: 20px;
+	font-size: 2rem;
 	font-weight: 700;
-	letter-spacing: 17.4px;
+	letter-spacing: 1.75rem;
 	animation: moveInRight 1s ease-out;
 }
 
@@ -105,11 +116,11 @@ body {
 	0% {
 		opacity: 0;
 		/* Because we want to animate in the direction */
-		transform: translateX(-100px);
+		transform: translateX(-10rem);
 	}
 
 	80% {
-		transform: translateX(10px);
+		transform: translateX(1rem);
 	}
 
 	/* Finish */
@@ -125,11 +136,11 @@ body {
 	/* Start */
 	0% {
 		opacity: 0;
-		transform: translateX(100px);
+		transform: translateX(10rem);
 	}
 
 	80% {
-		transform: translateX(-10px);
+		transform: translateX(-1rem);
 	}
 
 	/* Finish */
@@ -144,7 +155,7 @@ body {
 	/* Start */
 	0% {
 		opacity: 0;
-		transform: translateY(30px);
+		transform: translateY(3rem);
 	}
 
 	/* Finish */
@@ -160,8 +171,9 @@ body {
 .btn:visited {
 	position: relative;
 	display: inline-block;
-	padding: 15px 40px;
-	border-radius: 100px;
+	padding: 1.5rem 4rem;
+	border-radius: 10rem;
+	font-size: 1.6rem;
 	text-transform: uppercase;
 	text-decoration: none;
 	transition: all 0.2s;
@@ -170,16 +182,16 @@ body {
 .btn:hover {
 	transform: translateY(-3px);
 	/* X Y blur color */
-	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
 }
 
 .btn:active {
 	transform: translateY(-1px);
 	/* When we press on the button, we want to give the impression that the button is further away from the user */
-	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
 
-.btn-white {
+.btn--white {
 	color: #777;
 	background-color: #fff;
 }
@@ -194,11 +206,11 @@ body {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	border-radius: 100px;
+	border-radius: 10rem;
 	transition: all 0.4s;
 }
 
-.btn-white::after {
+.btn--white::after {
 	background-color: #fff;
 }
 
@@ -207,7 +219,7 @@ body {
 	opacity: 0;
 }
 
-.btn-animated {
+.btn--animated {
 	animation: moveInBottom 1s ease-out 0.75s;
 	/* This will automatically apply the styles up to 0% before the animation starts. */
 	animation-fill-mode: backwards;

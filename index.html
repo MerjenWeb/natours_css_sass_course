@@ -15,18 +15,23 @@
     </head>
 
     <body>
+
+        <!-- Header is the block in BEM system, because it is a stand-alone component that is meaningful on its own. And so, all the elements that are inside the header should also have the "header" attached to them. (ex. header__logo-box, so double underscore)-->
         <header class="header">
+
             <!-- a better practice - to put an img into the container, because the img is an inline element -->
-            <div class="logo-box">
-                <img src="img/logo-white.png" alt="Logo" class="logo">
+            <div class="header__logo-box">
+                <img src="img/logo-white.png" alt="Logo" class="header__logo">
             </div>
 
-            <div class="text-box">
+            <div class="header__text-box">
+
+                <!-- heading-primary can be treated as a block on its own, but spans inside the heading-primary are modifiers, so we should use double dashes after the name of the block -->
                 <h1 class="heading-primary">
-                    <span class="heading-primary-main">Outdoors</span>
-                    <span class="heading-primary-sub">is where life happens</span>
+                    <span class="heading-primary--main">Outdoors</span>
+                    <span class="heading-primary--sub">is where life happens</span>
                 </h1>
-                <a href="#" class="btn btn-white btn-animated">Discover our tours</a>
+                <a href="#" class="btn btn--white btn--animated">Discover our tours</a>
             </div>
 
         </header>
