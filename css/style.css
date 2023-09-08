@@ -1,0 +1,214 @@
+/*
+COLORS:
+
+Light green: #7ed56f
+Medium green: #55c57a
+Dark green: #28b485
+
+*/
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	padding: 30px;
+	color: #777;
+	font-family: "Lato", sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 1.7;
+}
+
+.header {
+	position: relative;
+
+	/* 95% of the viewport height */
+	height: 95vh;
+	/* currently in CSS folder, so we have to go up a level - .. */
+	/* first gradient, then image */
+	background-image: linear-gradient(
+			to right bottom,
+			rgba(126, 213, 111, 0.8),
+			rgba(40, 180, 131, 0.8)
+		),
+		url(../img/hero.jpg);
+	/* cover - fits the element inside the box's width and height*/
+	background-size: cover;
+	/* top - top of the image stays at the top of the container (also possible - bottom, center) */
+	background-position: top;
+
+	/* specify the polygon in which the image or the element will still be visible */
+	/*  */
+	clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+}
+
+.logo-box {
+	position: absolute;
+	top: 40px;
+	left: 40px;
+}
+
+.logo {
+	height: 35px;
+}
+
+.text-box {
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	text-align: center;
+	transform: translate(-50%, -50%);
+}
+
+.heading-primary {
+	margin-bottom: 60px;
+	color: #fff;
+	text-transform: uppercase;
+
+	/* To remove the shaky effect during animation, this property hides the back part of the element. No one really knows why this works, but it does. */
+	backface-visibility: hidden;
+}
+
+.heading-primary-main {
+	display: block;
+	font-size: 60px;
+	font-weight: 400;
+	letter-spacing: 35px;
+
+	/* Animation properties */
+	animation-name: moveInLeft;
+	animation-duration: 1s;
+	animation-timing-function: ease-out;
+	/* 
+  animation-delay: 3s;
+	animation-iteration-count: 3;
+  */
+}
+
+.heading-primary-sub {
+	display: block;
+	font-size: 20px;
+	font-weight: 700;
+	letter-spacing: 17.4px;
+	animation: moveInRight 1s ease-out;
+}
+
+/* Complex type of using - Animation */
+/* For the browser performance -it's best to only ever animate two different properties : opacity, transform (with the help of which we can do a whole lot, basically everything we need to make the cool animations)*/
+/* Applying the animation. For the animation to work we have to specify two properties: animation-name, animation-duration */
+@keyframes moveInLeft {
+	/* How do we want the elements to look at the: */
+	/* Start */
+	0% {
+		opacity: 0;
+		/* Because we want to animate in the direction */
+		transform: translateX(-100px);
+	}
+
+	80% {
+		transform: translateX(10px);
+	}
+
+	/* Finish */
+	100% {
+		opacity: 1;
+		/* Because we want it to look like it looks right now */
+		transform: translate(0);
+	}
+}
+
+@keyframes moveInRight {
+	/* How do we want the elements to look at the: */
+	/* Start */
+	0% {
+		opacity: 0;
+		transform: translateX(100px);
+	}
+
+	80% {
+		transform: translateX(-10px);
+	}
+
+	/* Finish */
+	100% {
+		opacity: 1;
+		transform: translate(0);
+	}
+}
+
+@keyframes moveInBottom {
+	/* How do we want the elements to look at the: */
+	/* Start */
+	0% {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+
+	/* Finish */
+	100% {
+		opacity: 1;
+		transform: translate(0);
+	}
+}
+
+/* Easy type of using - Animation */
+/* link - pseudoclass */
+.btn:link,
+.btn:visited {
+	position: relative;
+	display: inline-block;
+	padding: 15px 40px;
+	border-radius: 100px;
+	text-transform: uppercase;
+	text-decoration: none;
+	transition: all 0.2s;
+}
+
+.btn:hover {
+	transform: translateY(-3px);
+	/* X Y blur color */
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+	transform: translateY(-1px);
+	/* When we press on the button, we want to give the impression that the button is further away from the user */
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-white {
+	color: #777;
+	background-color: #fff;
+}
+
+/* Pseudo element is treated like a child element, so 100% of the button */
+.btn::after {
+	content: "";
+	display: inline-block;
+	position: absolute;
+	z-index: -1;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 100px;
+	transition: all 0.4s;
+}
+
+.btn-white::after {
+	background-color: #fff;
+}
+
+.btn:hover::after {
+	transform: scaleX(1.4) scaleY(1.6);
+	opacity: 0;
+}
+
+.btn-animated {
+	animation: moveInBottom 1s ease-out 0.75s;
+	/* This will automatically apply the styles up to 0% before the animation starts. */
+	animation-fill-mode: backwards;
+}
