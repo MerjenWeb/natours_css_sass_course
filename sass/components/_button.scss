@@ -1,0 +1,62 @@
+// Easy type of using - Animation
+// link - pseudoclass
+.btn {
+	&:link,
+	&:visited {
+		position: relative;
+		display: inline-block;
+		padding: 1.5rem 4rem;
+		border-radius: 10rem;
+		font-size: 1.6rem;
+		text-transform: uppercase;
+		text-decoration: none;
+		transition: all 0.2s;
+	}
+
+	&:hover {
+		transform: translateY(-3px);
+		// X Y blur color
+		box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+
+		&::after {
+			transform: scaleX(1.4) scaleY(1.6);
+			opacity: 0;
+		}
+	}
+
+	&:active {
+		transform: translateY(-1px);
+		// When we press on the button, we want to give the impression that the button is further away from the user
+		box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+	}
+
+	&--white {
+		color: $color-grey-dark;
+		background-color: $color-white;
+
+		&::after {
+			background-color: $color-white;
+		}
+	}
+
+	// Pseudo element is treated like a child element, so 100% of the button
+	&::after {
+		content: "";
+		display: inline-block;
+		position: absolute;
+		z-index: -1;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		border-radius: 10rem;
+		transition: all 0.4s;
+	}
+
+	&--animated {
+		animation: moveInBottom 1s ease-out 0.75s;
+
+		// This will automatically apply the styles up to 0% before the animation starts.
+		animation-fill-mode: backwards;
+	}
+}

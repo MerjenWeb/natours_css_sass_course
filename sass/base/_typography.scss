@@ -1,0 +1,39 @@
+body {
+	padding: 3rem;
+	color: $color-grey-dark;
+	font-family: "Lato", sans-serif;
+	font-weight: 400;
+	// font-size: 16px;
+	line-height: 1.7;
+}
+
+.heading-primary {
+	margin-bottom: 6rem;
+	color: $color-white;
+	text-transform: uppercase;
+
+	// To remove the shaky effect during animation, this property hides the back part of the element. No one really knows why this works, but it does.
+	backface-visibility: hidden;
+
+	&--main {
+		display: block;
+		font-size: 6rem;
+		font-weight: 400;
+		letter-spacing: 3.5rem;
+
+		// Animation properties
+		animation-name: moveInLeft;
+		animation-duration: 1s;
+		animation-timing-function: ease-out;
+		// animation-delay: 3s;
+		// animation-iteration-count: 3;
+	}
+
+	&--sub {
+		display: block;
+		font-size: 2rem;
+		font-weight: 700;
+		letter-spacing: 1.75rem;
+		animation: moveInRight 1s ease-out;
+	}
+}

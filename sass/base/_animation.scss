@@ -1,0 +1,57 @@
+// Complex type of using - Animation
+// For the browser performance -it's best to only ever animate two different properties : opacity, transform (with the help of which we can do a whole lot, basically everything we need to make the cool animations)
+// Applying the animation. For the animation to work we have to specify two properties: animation-name, animation-duration
+@keyframes moveInLeft {
+	// How do we want the elements to look at the:
+	// Start
+	0% {
+		opacity: 0;
+		// Because we want to animate in the direction
+		transform: translateX(-10rem);
+	}
+
+	80% {
+		transform: translateX(1rem);
+	}
+
+	// Finish
+	100% {
+		opacity: 1;
+		// Because we want it to look like it looks right now
+		transform: translate(0);
+	}
+}
+
+@keyframes moveInRight {
+	// How do we want the elements to look at the:
+	// Start
+	0% {
+		opacity: 0;
+		transform: translateX(10rem);
+	}
+
+	80% {
+		transform: translateX(-1rem);
+	}
+
+	// Finish
+	100% {
+		opacity: 1;
+		transform: translate(0);
+	}
+}
+
+@keyframes moveInBottom {
+	// How do we want the elements to look at the:
+	// Start
+	0% {
+		opacity: 0;
+		transform: translateY(3rem);
+	}
+
+	// Finish
+	100% {
+		opacity: 1;
+		transform: translate(0);
+	}
+}
