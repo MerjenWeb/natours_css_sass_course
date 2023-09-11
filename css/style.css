@@ -1,3 +1,31 @@
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem); }
+  80% {
+    transform: translateX(1rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem); }
+  80% {
+    transform: translateX(-1rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
 *,
 *::after,
 *::before {
@@ -6,34 +34,115 @@
   box-sizing: inherit; }
 
 html {
-  /* This shouldn't be in pixels as we overwrite the browser settings that the user can manually change in the settings. For example, when people have bad eyesight, they increase the default font-size of their browser. If we set the font to 10px, then we remove the ability for these people to see our website properly, because they won't be able to change the default font-size. They can CHANGE it, but our font-size WON'T be affected by that. It will always be 10px, no matter what the user has as the default size. */
-  /*  */
-  /* font-size: 100%; - 16px */
-  /* 10/16 = .625 */
   font-size: 62.5%; }
 
 body {
-  box-sizing: border-box;
+  box-sizing: border-box; }
+
+body {
   padding: 3rem;
   color: #777;
   font-family: "Lato", sans-serif;
   font-weight: 400;
-  /* font-size: 16px; */
   line-height: 1.7; }
+
+.heading-primary {
+  margin-bottom: 6rem;
+  color: #fff;
+  text-transform: uppercase;
+  backface-visibility: hidden; }
+  .heading-primary--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out; }
+  .heading-primary--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.75rem;
+    animation: moveInRight 1s ease-out; }
+
+.btn:link, .btn:visited {
+  position: relative;
+  display: inline-block;
+  padding: 1.5rem 4rem;
+  border-radius: 10rem;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.2s; }
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+  .btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0; }
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
+
+.btn--white {
+  color: #777;
+  background-color: #fff; }
+  .btn--white::after {
+    background-color: #fff; }
+
+.btn::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10rem;
+  transition: all 0.4s; }
+
+.btn--animated {
+  animation: moveInBottom 1s ease-out 0.75s;
+  animation-fill-mode: backwards; }
+
+.row {
+  max-width: 114rem;
+  background-color: #eee;
+  margin: 0 auto; }
+  .row:not(:last-child) {
+    margin-bottom: 8rem; }
+  .row::after {
+    content: "";
+    display: table;
+    clear: both; }
+  .row [class^="col-"] {
+    background-color: orangered;
+    float: left; }
+    .row [class^="col-"]:not(:last-child) {
+      margin-right: 6rem; }
+  .row .col-1-of-2 {
+    width: calc((100% - 6rem) / 2); }
+  .row .col-1-of-3 {
+    width: calc((100% - 2 * 6rem) / 3); }
+  .row .col-1-of-4 {
+    width: calc((100% - 3 * 6rem) / 4); }
+  .row .col-2-of-3 {
+    width: calc( 2 * ((100% - 2 * 6rem) / 3) + 6rem); }
+  .row .col-2-of-4 {
+    width: calc( 2 * ((100% - 3 * 6rem) / 4) + 6rem); }
+  .row .col-3-of-4 {
+    width: calc( 3 * ((100% - 3 * 6rem) / 4) + 2 * 6rem); }
 
 .header {
   position: relative;
-  /* 95% of the viewport height */
   height: 95vh;
-  /* currently in CSS folder, so we have to go up a level - .. */
-  /* first gradient, then image */
   background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero.jpg);
-  /* cover - fits the element inside the box's width and height*/
   background-size: cover;
-  /* top - top of the image stays at the top of the container (also possible - bottom, center) */
   background-position: top;
-  /* specify the polygon in which the image or the element will still be visible */
-  /*  */
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); }
   .header__logo-box {
     position: absolute;
@@ -47,116 +156,3 @@ body {
     left: 50%;
     text-align: center;
     transform: translate(-50%, -50%); }
-
-.heading-primary {
-  margin-bottom: 6rem;
-  color: #fff;
-  text-transform: uppercase;
-  /* To remove the shaky effect during animation, this property hides the back part of the element. No one really knows why this works, but it does. */
-  backface-visibility: hidden; }
-  .heading-primary--main {
-    display: block;
-    font-size: 6rem;
-    font-weight: 400;
-    letter-spacing: 3.5rem;
-    /* Animation properties */
-    animation-name: moveInLeft;
-    animation-duration: 1s;
-    animation-timing-function: ease-out;
-    /* 
-  animation-delay: 3s;
-	animation-iteration-count: 3;
-  */ }
-  .heading-primary--sub {
-    display: block;
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: 1.75rem;
-    animation: moveInRight 1s ease-out; }
-
-/* Complex type of using - Animation */
-/* For the browser performance -it's best to only ever animate two different properties : opacity, transform (with the help of which we can do a whole lot, basically everything we need to make the cool animations)*/
-/* Applying the animation. For the animation to work we have to specify two properties: animation-name, animation-duration */
-@keyframes moveInLeft {
-  /* How do we want the elements to look at the: */
-  /* Start */
-  0% {
-    opacity: 0;
-    /* Because we want to animate in the direction */
-    transform: translateX(-10rem); }
-  80% {
-    transform: translateX(1rem); }
-  /* Finish */
-  100% {
-    opacity: 1;
-    /* Because we want it to look like it looks right now */
-    transform: translate(0); } }
-
-@keyframes moveInRight {
-  /* How do we want the elements to look at the: */
-  /* Start */
-  0% {
-    opacity: 0;
-    transform: translateX(10rem); }
-  80% {
-    transform: translateX(-1rem); }
-  /* Finish */
-  100% {
-    opacity: 1;
-    transform: translate(0); } }
-
-@keyframes moveInBottom {
-  /* How do we want the elements to look at the: */
-  /* Start */
-  0% {
-    opacity: 0;
-    transform: translateY(3rem); }
-  /* Finish */
-  100% {
-    opacity: 1;
-    transform: translate(0); } }
-
-/* Easy type of using - Animation */
-/* link - pseudoclass */
-.btn {
-  /* Pseudo element is treated like a child element, so 100% of the button */ }
-  .btn:link, .btn:visited {
-    position: relative;
-    display: inline-block;
-    padding: 1.5rem 4rem;
-    border-radius: 10rem;
-    font-size: 1.6rem;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.2s; }
-  .btn:hover {
-    transform: translateY(-3px);
-    /* X Y blur color */
-    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
-    .btn:hover::after {
-      transform: scaleX(1.4) scaleY(1.6);
-      opacity: 0; }
-  .btn:active {
-    transform: translateY(-1px);
-    /* When we press on the button, we want to give the impression that the button is further away from the user */
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
-  .btn--white {
-    color: #777;
-    background-color: #fff; }
-    .btn--white::after {
-      background-color: #fff; }
-  .btn::after {
-    content: "";
-    display: inline-block;
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 10rem;
-    transition: all 0.4s; }
-  .btn--animated {
-    animation: moveInBottom 1s ease-out 0.75s;
-    /* This will automatically apply the styles up to 0% before the animation starts. */
-    animation-fill-mode: backwards; }
