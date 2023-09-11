@@ -7,7 +7,7 @@
 		display: inline-block;
 		padding: 1.5rem 4rem;
 		border-radius: 10rem;
-		font-size: 1.6rem;
+		font-size: $default-font-size;
 		text-transform: uppercase;
 		text-decoration: none;
 		transition: all 0.2s;
@@ -58,5 +58,31 @@
 
 		// This will automatically apply the styles up to 0% before the animation starts.
 		animation-fill-mode: backwards;
+	}
+}
+
+.bnt-text {
+	&:link,
+	&:visited {
+		display: inline-block;
+		padding: 3px;
+		border-bottom: 1px solid $color-primary;
+		font-size: $default-font-size;
+		color: $color-primary;
+		text-decoration: none;
+		transition: all 0.2s;
+	}
+
+	// box-shadow and transform properties for the button to look like it is being pressed down
+	&:hover {
+		background-color: $color-primary;
+		color: $color-white;
+		box-shadow: 0 1rem 2rem rgba($color-black, 0.15);
+		transform: translateY(-2px);
+	}
+
+	&:active {
+		box-shadow: 0 0.5rem 1rem rgba($color-black, 0.15);
+		transform: translateY(0);
 	}
 }

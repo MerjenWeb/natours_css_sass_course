@@ -1,7 +1,7 @@
 .row {
 	// max-width : if we have available space, then it will have the width that we specified, if not it will simply fill 100% of the available space that it has
 	max-width: $grid-width;
-	background-color: #eee;
+
 	// Centering block element inside another block element
 	margin: 0 auto;
 	// margin-bottom: $gutter-horizontal;
@@ -18,8 +18,6 @@
 	// We could also use asterisk sign (*) - and this is used to select all the elements class names of which contain "col-". There is also a dollar sign to specify the elements that end with "col-".
 	// It will select all of the elements in which the class attribute starts (^) with "col-"
 	[class^="col-"] {
-		background-color: orangered;
-
 		// float - all of the child elements of the row elements are floated, so the height colapses and becomes 0. That is why we use clearfix hack.
 		float: left;
 

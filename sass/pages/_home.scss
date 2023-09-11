@@ -1,0 +1,6 @@
+.section-about {
+	padding: 25rem 0;
+	// Header image - 95vh, the right-bottom angle finsihes at 75vh, so the difference is 20vh. We do this to color the top-left angle of the main element.
+	margin-top: -20vh;
+	background-color: $color-grey-light-1;
+}

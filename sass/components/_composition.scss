@@ -1,0 +1,45 @@
+.composition {
+	position: relative;
+
+	&__photo {
+		z-index: 10;
+		position: absolute;
+		width: 55%;
+		border-radius: 2px;
+		box-shadow: 0 1.5rem 4rem rgba($color-black, 0.4);
+		transition: all 0.2s;
+		outline-offset: 2rem;
+
+		&--p1 {
+			left: 0;
+			top: -2rem;
+		}
+
+		&--p2 {
+			right: 0;
+			top: 2rem;
+		}
+
+		&--p3 {
+			left: 20%;
+			top: 10rem;
+		}
+
+		&:hover {
+			// green border with the space between an image and the border
+			outline: 1.5rem solid $color-primary;
+
+			// zooming
+			transform: scale(1.05) translateY(-0.5rem);
+			// the impression of the image being closer to the user
+			box-shadow: 0 2.5rem 4rem rgba($color-black, 0.5);
+			// for the hovered image to be on top of the others, we set z-index of the regular images to 10, and the hovered ones to 20
+			z-index: 20;
+		}
+	}
+
+	// When we hover the composition, we then select the composition photo which is not hovered
+	&:hover &__photo:not(:hover) {
+		transform: scale(0.95);
+	}
+}
