@@ -17,6 +17,7 @@
 	background-position: top;
 
 	// specify the polygon in which the image or the element will still be visible
+	-webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
 	clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
 
 	&__logo-box {

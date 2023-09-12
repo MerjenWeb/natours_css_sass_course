@@ -39,6 +39,15 @@
 		}
 	}
 
+	&--green {
+		color: $color-white;
+		background-color: $color-primary;
+
+		&::after {
+			background-color: $color-primary;
+		}
+	}
+
 	// Pseudo element is treated like a child element, so 100% of the button
 	&::after {
 		content: "";
