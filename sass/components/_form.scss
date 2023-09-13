@@ -84,12 +84,9 @@
 		border-radius: 50%;
 
 		&::after {
+			@include absCenter;
 			content: "";
 			display: block;
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
 			background-color: $color-primary;
 			height: 1.3rem;
 			width: 1.3rem;
