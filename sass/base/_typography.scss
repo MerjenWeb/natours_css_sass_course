@@ -1,5 +1,4 @@
 body {
-	padding: 3rem;
 	color: $color-grey-dark-1;
 	font-family: "Lato", sans-serif;
 	font-weight: 400;
@@ -27,6 +26,11 @@ body {
 		animation-timing-function: ease-out;
 		// animation-delay: 3s;
 		// animation-iteration-count: 3;
+
+		@include respond(phone) {
+			letter-spacing: 1rem;
+			font-size: 5rem;
+		}
 	}
 
 	&--sub {
@@ -35,6 +39,10 @@ body {
 		font-weight: 700;
 		letter-spacing: 1.75rem;
 		animation: moveInRight 1s ease-out;
+
+		@include respond(phone) {
+			letter-spacing: 0.5rem;
+		}
 	}
 }
 
@@ -58,6 +66,14 @@ body {
 	// We have to make the text transparent, so we could see the background image.
 	letter-spacing: 2px;
 	transition: all 0.2s;
+
+	@include respond(tab-port) {
+		font-size: 3rem;
+	}
+
+	@include respond(phone) {
+		font-size: 2.5rem;
+	}
 
 	&:hover {
 		// Skew - уклон
