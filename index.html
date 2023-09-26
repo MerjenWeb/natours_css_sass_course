@@ -363,8 +363,9 @@
                 <!-- art direction - to tell the browser to use one image on one screen width and another image on another screen width -->
                 <!-- in media attr we can put a css media query -->
                 <!-- Recap: in picture element we can specify multiple sources for one image and then in the source element we can write media query just like in css, and wo with this we force the browser to use <source srcset....>this image srcset in case that max-width is less than 600px, and in case it is not then the browser o=is forced to use the second srcset, and we can use density switching because we use srcset attr and not src -->
-                <picture class="footer_logo">
-                    <source srcset="img/logo-green-small-1x.png 1x, logo-green-small-2x 2x" media="(max-width:37.5em)">
+                <picture class="footer__logo">
+                    <source srcset="img/logo-green-small-1x.png 1x, img/logo-green-small-2x.png 2x"
+                        media="(max-width: 37.5em)">
                     <img srcset="img/logo-green-1x.png 1x, img/logo-green-2x.png 2x" alt="Full logo">
                 </picture>
 
