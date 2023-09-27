@@ -2,23 +2,44 @@
 	position: relative;
 
 	// 95% of the viewport height
-	height: 95vh;
+	height: 85vh;
 	// currently in CSS folder, so we have to go up a level - ..
 	// first gradient, then image
+	// for the normal situation, we are using a small resolution screen, so - small hero img, and we add media query for the higher resolution screen
 	background-image: linear-gradient(
 			to right bottom,
 			rgba($color-primary-light, 0.8),
 			rgba($color-primary-dark, 0.8)
 		),
-		url(../img/hero.jpg);
+		url(../img/hero-small.jpg);
 	// cover - fits the element inside the box's width and height
 	background-size: cover;
 	// top - top of the image stays at the top of the container (also possible - bottom, center)
 	background-position: top;
 
 	// specify the polygon in which the image or the element will still be visible
-	-webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-	clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+
+	@supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+		height: 95vh;
+		-webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+		clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+	}
+
+	// we can implement different styles not only depending on different viewport width, but also depending on other things, such as the device resolution
+	// whenever the resolution is higher that 192 dots per inch, the code that is in here will be applied
+	// the large version of the image is shown 1) when the res is higher than 192, so when have a 2x screen, and at the same time 2) whenever the width is larger than 600px (bcs if it is below 600px, then it doesnt make sense to display such a high res img)
+	// ' , ' in media query means ' or ' (if the width is larger than 2000 this needs to happen)
+	// min-resolution is not supported on safari, so we use -webkit-
+	@media (min-resolution: 192dpi) and (min-width: 37.5em),
+		(-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),
+		(min-width: 125em) {
+		background-image: linear-gradient(
+				to right bottom,
+				rgba($color-primary-light, 0.8),
+				rgba($color-primary-dark, 0.8)
+			),
+			url(../img/hero.jpg);
+	}
 
 	@include respond(phone) {
 		-webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);

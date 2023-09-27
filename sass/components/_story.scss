@@ -27,21 +27,29 @@
 
 	&__shape {
 		position: relative;
+		float: left;
 		width: 15rem;
 		height: 15rem;
-		float: left;
-		-webkit-shape-outside: circle(50% at 50% 50%);
-		// shape-outside defines where the content floats around the element
-		// circle(1st parameter (the size) : the radius of the circle (if 50% - then the radius will be half of the width of the element - 7.5rem) at 2nd parameter : 50% 50% - because that is the center of the circle, so exactly the center horizontally  and vertically )
-		shape-outside: circle(50% at 50% 50%);
-		// and if we want the element to look like circle, then we use clip-path property
-		-webkit-clip-path: circle(50% at 50% 50%);
-		clip-path: circle(50% at 50% 50%);
-		transform: translateX(-3rem) skewX(12deg);
-	}
+		overflow: hidden;
+		// if the browser does not support webkitted properties
+		border-radius: 50%;
 
-	@include respond(phone) {
-		transform: translateX(0) skewX(0);
+		transform: translateX(-3rem) skewX(12deg);
+
+		@supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+			-webkit-shape-outside: circle(50% at 50% 50%);
+			// shape-outside defines where the content floats around the element
+			// circle(1st parameter (the size) : the radius of the circle (if 50% - then the radius will be half of the width of the element - 7.5rem) at 2nd parameter : 50% 50% - because that is the center of the circle, so exactly the center horizontally  and vertically )
+			shape-outside: circle(50% at 50% 50%);
+			// and if we want the element to look like circle, then we use clip-path property
+			-webkit-clip-path: circle(50% at 50% 50%);
+			clip-path: circle(50% at 50% 50%);
+			border-radius: none;
+		}
+
+		@include respond(phone) {
+			transform: translateX(0) skewX(0);
+		}
 	}
 
 	&__img {

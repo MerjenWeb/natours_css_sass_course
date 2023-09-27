@@ -21,6 +21,7 @@
 		transition: all 0.8s ease;
 
 		// hides the backpart of the element
+		-webkit-backface-visibility: hidden;
 		backface-visibility: hidden;
 
 		&--front {
