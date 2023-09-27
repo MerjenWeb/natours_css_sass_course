@@ -30,9 +30,9 @@
 	// the large version of the image is shown 1) when the res is higher than 192, so when have a 2x screen, and at the same time 2) whenever the width is larger than 600px (bcs if it is below 600px, then it doesnt make sense to display such a high res img)
 	// ' , ' in media query means ' or ' (if the width is larger than 2000 this needs to happen)
 	// min-resolution is not supported on safari, so we use -webkit-
-	@media (min-resolution: 192dpi) and (min-width: 37.5em),
-		(-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),
-		(min-width: 125em) {
+	@media only screen and (min-resolution: 192dpi) and (min-width: 37.5em),
+		only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),
+		only screen and (min-width: 125em) {
 		background-image: linear-gradient(
 				to right bottom,
 				rgba($color-primary-light, 0.8),

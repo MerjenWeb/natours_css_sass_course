@@ -194,7 +194,9 @@
 		font-weight: 100;
 	}
 
-	@include respond(tab-port) {
+	// @include respond(tab-port) {
+	// touch and non touch devices (touch devices cant hover, so we are adding hover:none, we can also add hover:hover if we want to specify the devices on which hover is possible)
+	@media only screen and (max-width: 56.25em), only screen and (hover: none) {
 		height: auto;
 		border-radius: $border-radius-small;
 		background-color: $color-white;
